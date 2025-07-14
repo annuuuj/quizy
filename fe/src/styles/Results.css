@@ -1,0 +1,171 @@
+/* result.css */
+
+/* === General Layout === */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(to bottom right, #f8f9fa, #e2e8f0);
+}
+
+.results-container {
+  padding-bottom: 60px;
+}
+
+
+/* === Hero Section === */
+.results-hero-section {
+  text-align: center;
+  margin: 40px 20px;
+}
+
+.results-hero-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: linear-gradient(to right, #ec4899, #8b5cf6);
+   background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+
+.results-hero-subtitle {
+  font-size: 1.25rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.results-score-display {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 10px 20px;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 12px auto;
+}
+
+/* === Motivation Box (if needed) === */
+.motivation-message {
+  text-align: center;
+  color: #e11d48;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* === Stats Grid === */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 40px 20px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.icon-container {
+  width: 50px;
+  height: 50px;
+  background: #fce7f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  border-radius: 12px;
+}
+
+.icon-container img {
+  width: 28px;
+  height: 28px;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+.card-value {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.card-subtext {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* === Buttons === */
+.results-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 40px;
+}
+
+.results-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.primary-button {
+  background: linear-gradient(to right, #3b82f6, #9333ea);
+  color: white;
+  border: none;
+}
+
+.primary-button:hover {
+  opacity: 0.9;
+}
+
+.outline-button {
+  background: transparent;
+  border: 2px solid #9333ea;
+  color: #9333ea;
+}
+
+.secondary-button {
+  background-color: #f3f4f6;
+  color: #1f2937;
+  border: none;
+}
+
+/* === Fallback Page === */
+.fallback {
+  text-align: center;
+  margin-top: 80px;
+}
+
+.fallback-heading {
+  font-size: 2rem;
+  color: #111827;
+}
+
+.fallback-text {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.fallback-button {
+  padding: 12px 20px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}

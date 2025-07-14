@@ -1,0 +1,236 @@
+.home-container {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fdfdfd;
+  color: #333;
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+}
+
+.logo-text {
+  font-size: 26px;
+  font-weight: 800;
+  background: linear-gradient(to right, #8b5cf6, #ec4899);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 15px;
+  color: #555;
+}
+
+.profile-btn {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fafafa;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.profile-btn:hover {
+  background: #f0f0f0;
+}
+
+/* ===== Hero Section ===== */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(to bottom, #f9fafb, #f4f4f5);
+}
+
+.hero-title {
+  font-size: 54px;
+  font-weight: 900;
+  background: linear-gradient(to right, #8b5cf6, #ec4899, #f59e0b);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 24px;
+}
+
+.hero-desc {
+  font-size: 20px;
+  color: #555;
+  max-width: 640px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+.hero-buttons a{
+  text-decoration: none;
+}
+
+.primary-btn,
+.outline-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-size: 17px;
+  border-radius: 12px;
+  transition: 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.2);
+}
+
+.primary-btn {
+  background: linear-gradient(to right, #6366f1, #ec4899);
+  color: white;
+  border: none;
+}
+
+.primary-btn:hover {
+  opacity: 0.9;
+}
+
+.outline-btn {
+  background: white;
+  border: 2px solid #ccc;
+  color: #333;
+}
+
+.outline-btn:hover {
+  border-color: #999;
+  background: #f9f9f9;
+}
+
+/* ===== Benefits Section ===== */
+.benefits {
+  background: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.benefits h3{
+  color: black;
+}
+
+.section-title{
+    font-size: 36px;
+    font-weight: bold;
+    background: linear-gradient(to right, #6366f1, #3b82f6, #06b6d4);
+    text-overflow: inherit;
+    border-radius: 14px;    
+    margin-bottom: 43px;
+    padding: 32px;
+
+}
+
+.section-desc {
+  font-size: 17px;
+  color: #666;
+  margin-bottom: 48px;
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.card-grid {
+ display: grid
+;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 61px;
+        margin-left: 104px;
+    padding: 0 20px;
+    height: 476px;
+    margin-right: 115px;
+}
+
+.card {
+  padding: 3rem;
+  border-radius: 16px;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-img {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 16px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card-desc {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ===== CTA Section ===== */
+.cta {
+  background: linear-gradient(to right, #6366f1, #ec4899);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.cta h3 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.cta p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.cta-btn {
+  background: white;
+  color: #6366f1;
+  padding: 14px 28px;
+  font-size: 17px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.cta-btn:hover {
+  background: #f0f0f0;
+}
