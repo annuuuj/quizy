@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Brain,
   Heart,
@@ -6,15 +6,28 @@ import {
   Activity,
   Timer,
   Target,
-  Trophy,
   PlayCircle,
   Star,
   Users,
-  ArrowLeft
 } from "lucide-react";
 import "../styles/subjects.css";
 
 const Subjects = () => {
+  const navigate = useNavigate();
+
+  // The function now accepts the subjectId as a parameter.
+  const handleStartQuiz = (subjectId) => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      // Use the subjectId parameter to create the navigation path.
+      navigate(`/Quiz/${subjectId}`); 
+    } else {
+      // You can redirect to a sign-up page for a better user experience.
+      navigate("/signup"); 
+    }
+  };
+
   const subjects = [
     {
       id: "anatomy",
@@ -86,7 +99,6 @@ const Subjects = () => {
 
   return (
     <div className="subjects-page">
-
       <section className="subjects-section">
         <div className="section-header">
           <h2 className="section-title">Choose Your Subject</h2>
@@ -114,9 +126,13 @@ const Subjects = () => {
                 <div><Users className="icon" /> {subject.students} students</div>
                 <div><Star className="icon yellow" /> 4.{Math.floor(Math.random() * 5 + 3)}/5</div>
               </div>
-              <Link to={`/Quiz/${subject.id}`} className="start-btn">
-                <PlayCircle className="icon" /> Start Quiz
-              </Link>
+              
+              {/* Pass the subject.id into the handleStartQuiz function */}
+              <button 
+                className="start-btn" 
+                onClick={() => handleStartQuiz(subject.id)}> 
+                 Start Quiz
+              </button>
             </div>
           ))}
         </div>

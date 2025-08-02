@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { quizData } from "../data/quizData";
 import {
   ArrowLeft,
   AlarmClock,
@@ -14,12 +13,31 @@ import "../styles/Quiz.css";
 const Quiz = () => {
   const { subjectId } = useParams();
   const navigate = useNavigate();
+  const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const [timeRemaining, setTimeRemaining] = useState(45 * 60);
   const [showExplanation, setShowExplanation] = useState(false);
 
-  const questions = quizData[subjectId] || [];
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/admin/questions/${subjectId}`);
+        const data = await response.json();
+
+        if (!Array.isArray(data)) {
+          throw new Error("Invalid questions format");
+        }
+
+        setQuestions(data);
+      } catch (error) {
+        console.error("Failed to fetch questions:", error);
+        setQuestions([]);
+      }
+    };
+
+    fetchQuestions();
+  }, [subjectId]);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -33,7 +51,7 @@ const Quiz = () => {
       });
     }, 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [questions]);
 
   const formatTime = (seconds) => {
     const mins = Math.floor(seconds / 60);
@@ -62,6 +80,9 @@ const Quiz = () => {
   };
 
   const handleFinishQuiz = () => {
+    const confirmed = window.confirm("\u26a0\ufe0f Are you sure you want to finish the quiz?\n\nOnce submitted, you cannot change your answers.");
+    if (!confirmed) return;
+
     const score = selectedAnswers.reduce((acc, answer, index) => {
       return acc + (answer === questions[index].correctAnswer ? 1 : 0);
     }, 0);
@@ -89,36 +110,30 @@ const Quiz = () => {
     <div className="quiz-container">
       <div className="quiz-header">
         <div className="top-row">
-          <button className="exit-button" onClick={() => navigate("/subjects")}> 
-            <ArrowLeft size={22} />
-          </button>
-          {/* <h2 className="subject-title">{subjectId.charAt(0).toUpperCase() + subjectId.slice(1)} Quiz</h2> */}
+          <button className="exit-button" onClick={() => navigate("/subjects")}> <ArrowLeft size={22} /></button>
           <div className="quiz-meta">
+            <span className="badge"><AlarmClock size={16} style={{ marginRight: 4 }} />{formatTime(timeRemaining)}</span>
             <span className="badge">
-              <AlarmClock size={16} style={{ marginRight: 4 }} /> {formatTime(timeRemaining)}
-            </span>
-            <span className="badge">
-              <FileText size={16} style={{ marginRight: 4 }} /> {selectedAnswers.filter(ans => ans !== undefined).length}/{questions.length} Answered
+              <FileText size={16} style={{ marginRight: 4 }} />
+              {selectedAnswers.filter((ans) => ans !== undefined).length}/{questions.length} Answered
             </span>
           </div>
         </div>
         <div className="quiz-progress">
           <div
             className="quiz-progress-bar"
-            style={{ width: `${(selectedAnswers.filter(a => a !== undefined).length / questions.length) * 100}%` }}
+            style={{
+              width: `${(selectedAnswers.filter((a) => a !== undefined).length / questions.length) * 100}%`,
+            }}
           />
         </div>
       </div>
 
       <main className="quiz-main">
-        <h2>{subjectId.charAt(0).toUpperCase() + subjectId.slice(1)} </h2>
+        <h2>{subjectId.charAt(0).toUpperCase() + subjectId.slice(1)}</h2>
         <div className="question-card">
-          <div className="question-title">
-            Question {currentQuestion + 1}
-          </div>
-          <div className="question-text">
-            {questions[currentQuestion].question}
-          </div>
+          <div className="question-title">Question {currentQuestion + 1}</div>
+          <div className="question-text">{questions[currentQuestion].question}</div>
 
           <div className="options-list">
             {questions[currentQuestion].options.map((option, index) => (
@@ -133,10 +148,7 @@ const Quiz = () => {
           </div>
 
           {selectedAnswers[currentQuestion] !== undefined && (
-            <button
-              className="show-explanation"
-              onClick={() => setShowExplanation((prev) => !prev)}
-            >
+            <button className="show-explanation" onClick={() => setShowExplanation((prev) => !prev)}>
               <Flag size={16} style={{ marginRight: 6 }} /> Show Explanation
             </button>
           )}
@@ -153,13 +165,9 @@ const Quiz = () => {
             </button>
 
             {currentQuestion < questions.length - 1 ? (
-              <button className="next-button" onClick={handleNext}>
-                Next <ChevronRight size={16} />
-              </button>
+              <button className="next-button" onClick={handleNext}>Next <ChevronRight size={16} /></button>
             ) : (
-              <button className="finish-button" onClick={handleFinishQuiz}>
-                Finish Quiz
-              </button>
+              <button className="finish-button" onClick={handleFinishQuiz}>Finish Quiz</button>
             )}
           </div>
         </div>

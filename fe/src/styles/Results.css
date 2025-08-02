@@ -47,6 +47,11 @@ html {
   margin: 12px auto;
 }
 
+.badges{
+  font-weight: 700;
+    font-size: x-large;
+}
+
 /* === Motivation Box (if needed) === */
 .motivation-message {
   text-align: center;

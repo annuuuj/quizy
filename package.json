@@ -1,0 +1,17 @@
+{
+  "name": "quize",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --names \"FRONTEND,BACKEND\" --prefix-colors \"yellow,blue\" \"npm run client\" \"npm run server\"",
+    "client": "cd fe && npm start",
+    "server": "cd backend && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}

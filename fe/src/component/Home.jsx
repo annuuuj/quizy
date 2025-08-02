@@ -1,6 +1,5 @@
-import "../styles/Home.css";
-import { Link } from "react-router-dom";
-import { Typewriter } from 'react-simple-typewriter';
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   BookOpen,
   BarChart3,
@@ -8,12 +7,70 @@ import {
   Brain,
   Target,
   Zap,
-  Trophy,
   Clock,
   Star
 } from "lucide-react";
+import "../styles/Home.css"; // Importing the external CSS file
+
+// Custom Typewriter component to replace the external library
+const Typewriter = ({ words, loop = 0, typeSpeed = 70, deleteSpeed = 50, delaySpeed = 1500 }) => {
+  const [text, setText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    let timeoutId;
+
+    const handleTyping = () => {
+      const currentWord = words[wordIndex];
+      if (isDeleting) {
+        setText(currentWord.substring(0, text.length - 1));
+      } else {
+        setText(currentWord.substring(0, text.length + 1));
+      }
+
+      const isTypingComplete = !isDeleting && text === currentWord;
+      const isDeletingComplete = isDeleting && text === '';
+
+      if (isTypingComplete) {
+        setIsDeleting(true);
+        timeoutId = setTimeout(handleTyping, delaySpeed);
+      } else if (isDeletingComplete) {
+        setIsDeleting(false);
+        setWordIndex((prevIndex) => (prevIndex + 1) % words.length);
+        timeoutId = setTimeout(handleTyping, 500); // Small pause before typing next word
+      } else {
+        timeoutId = setTimeout(handleTyping, isDeleting ? deleteSpeed : typeSpeed);
+      }
+    };
+
+    timeoutId = setTimeout(handleTyping, isDeleting ? deleteSpeed : typeSpeed);
+
+    return () => clearTimeout(timeoutId);
+  }, [text, isDeleting, wordIndex, words, typeSpeed, deleteSpeed, delaySpeed]);
+
+  return <>{text}<span className="cursor">_</span></>;
+};
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  // Function to handle the profile button click.
+  // It checks for a token in local storage to determine
+  // if the user is authenticated.
+  const handleProfileClick = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      // If the token exists, navigate to the user's profile page.
+      navigate("/profile");
+    } else {
+      // If no token is found, redirect to the sign-up page.
+      navigate("/signup");
+    }
+  };
+
+  // Data for the benefits section.
   const benefits = [
     {
       title: "Boost Your Memory",
@@ -52,27 +109,24 @@ const Home = () => {
       {/* Header */}
       <header className="header">
         <div className="header-left">
-        <Brain className="benefit-icon" />
+          <Brain className="benefit-icon" />
           <h1 className="logo-text">QUIZY</h1>
         </div>
         <div className="header-right">
           <span>Welcome, Student!</span>
+          {/* onClick handler for profile button */}
+          <button onClick={handleProfileClick}>Profile</button>
         </div>
       </header>
 
       {/* Hero Section */}
       <section className="hero">
-    <h2 className="hero-title">
-  <Typewriter
-    words={['Master Physical Education', 'Boost Your Memory', 'Learn with Fun!']}
-    loop={0}
-    cursor
-    cursorStyle="_"
-    typeSpeed={70}
-    deleteSpeed={50}
-    delaySpeed={1500}
-  />
-</h2>
+        <h2 className="hero-title">
+          <Typewriter
+            words={['Master Physical Education', 'Boost Your Memory', 'Learn with Fun!']}
+            loop={0}
+          />
+        </h2>
         <p className="hero-desc">Transform your learning with interactive quizzes that make studying fun, effective, and engaging!</p>
         <div className="hero-buttons">
           <Link to="/Subjects">
@@ -81,10 +135,6 @@ const Home = () => {
               Start Quiz Journey
             </button>
           </Link>
-          <button className="outline-btn">
-            <BarChart3 className="icon" />
-            View Progress
-          </button>
         </div>
       </section>
 

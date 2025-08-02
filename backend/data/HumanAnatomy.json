@@ -1,0 +1,14 @@
+[
+  {
+    "subjectId": "HumanAnatomy",
+    "question": "How many bones are in the human body?",
+    "options": [
+      "206",
+      "201",
+      "210",
+      "215"
+    ],
+    "correctAnswer": "206",
+    "explanation": "An adult human has 206 bones."
+  }
+]

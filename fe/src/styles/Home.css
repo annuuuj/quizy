@@ -20,10 +20,14 @@
   gap: 12px;
 }
 
-.logo-img {
-  width: 48px;
-  height: 48px;
-  border-radius: 10px;
+.header-right button {
+  border-radius: 16px;
+  border: transparent;
+  height: 38px;
+  width: 82px;
+  font-weight: 500;
+  font-size: large;
+  cursor: pointer;
 }
 
 .logo-text {
@@ -41,19 +45,6 @@
   gap: 20px;
   font-size: 15px;
   color: #555;
-}
-
-.profile-btn {
-  padding: 8px 16px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background: #fafafa;
-  transition: 0.2s ease;
-  cursor: pointer;
-}
-
-.profile-btn:hover {
-  background: #f0f0f0;
 }
 
 /* ===== Hero Section ===== */
@@ -86,7 +77,8 @@
   justify-content: center;
   gap: 24px;
 }
-.hero-buttons a{
+
+.hero-buttons a {
   text-decoration: none;
 }
 
@@ -107,21 +99,11 @@
   background: linear-gradient(to right, #6366f1, #ec4899);
   color: white;
   border: none;
+  padding: 14px 28px;
 }
 
 .primary-btn:hover {
   opacity: 0.9;
-}
-
-.outline-btn {
-  background: white;
-  border: 2px solid #ccc;
-  color: #333;
-}
-
-.outline-btn:hover {
-  border-color: #999;
-  background: #f9f9f9;
 }
 
 /* ===== Benefits Section ===== */
@@ -131,19 +113,18 @@
   text-align: center;
 }
 
-.benefits h3{
+.benefits h3 {
   color: black;
 }
 
-.section-title{
-    font-size: 36px;
-    font-weight: bold;
-    background: linear-gradient(to right, #6366f1, #3b82f6, #06b6d4);
-    text-overflow: inherit;
-    border-radius: 14px;    
-    margin-bottom: 43px;
-    padding: 32px;
-
+.section-title {
+  font-size: 36px;
+  font-weight: bold;
+  background: linear-gradient(to right, #6366f1, #3b82f6, #06b6d4);
+  text-overflow: inherit;
+  border-radius: 14px;
+  margin-bottom: 43px;
+  padding: 32px;
 }
 
 .section-desc {
@@ -155,14 +136,12 @@
 }
 
 .card-grid {
- display: grid
-;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 61px;
-        margin-left: 104px;
-    padding: 0 20px;
-    height: 476px;
-    margin-right: 115px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 61px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 476px;
 }
 
 .card {
@@ -177,14 +156,6 @@
 .card:hover {
   transform: translateY(-6px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-}
-
-.card-img {
-  width: 72px;
-  height: 72px;
-  margin: 0 auto 16px;
-  object-fit: cover;
-  border-radius: 50%;
 }
 
 .card-title {
@@ -233,4 +204,118 @@
 
 .cta-btn:hover {
   background: #f0f0f0;
+}
+
+/* ====================================================== */
+/* Responsive Styles for Mobile & Tablet         */
+/* ====================================================== */
+
+@media (max-width: 768px) {
+  /* Global Adjustments */
+  .header {
+    padding: 10px 20px; /* Reduced padding on smaller screens */
+  }
+
+  .header-right {
+    gap: 10px; /* Reduced gap between elements */
+  }
+
+  .logo-text {
+    font-size: 22px; /* Smaller logo text */
+  }
+
+  /* Hero Section */
+  .hero {
+    padding: 60px 20px;
+  }
+
+  .hero-title {
+    font-size: 36px; /* Smaller title font size for mobile */
+  }
+
+  .hero-desc {
+    font-size: 16px; /* Smaller description font size */
+  }
+
+  .hero-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 15px;
+  }
+
+  .primary-btn, .outline-btn {
+    width: 100%; /* Make buttons full width */
+    justify-content: center; /* Center content in buttons */
+  }
+  
+  .primary-btn {
+    padding: 14px 0; /* Adjusted padding for full-width buttons */
+  }
+
+  /* Benefits Section */
+  .benefits {
+    padding: 40px 20px;
+  }
+  
+  .section-title {
+    font-size: 24px; /* Smaller title for benefits section */
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .section-desc {
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  .card-grid {
+    gap: 20px; /* Reduced gap between cards */
+    margin: 0; /* Resetting hardcoded margins */
+    padding: 0;
+    height: auto; /* Allow height to adjust automatically */
+  }
+
+  .card {
+    padding: 2rem; /* Reduced padding for cards */
+  }
+
+  .card-title {
+    font-size: 18px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+  }
+
+  /* CTA Section */
+  .cta {
+    padding: 60px 20px;
+  }
+  
+  .cta h3 {
+    font-size: 24px;
+  }
+  
+  .cta p {
+    font-size: 16px;
+  }
+  
+  .cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.cursor {
+    opacity: 1;
+    animation: blink 1s infinite;
+    font-weight: 300;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }

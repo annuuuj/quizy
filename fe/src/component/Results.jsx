@@ -52,7 +52,7 @@ const Results = () => {
         <p className="results-hero-subtitle">{subjectId} Quiz Results</p>
         <div className="badges">
           <span className="badge red">Grade: {grade}</span>
-          <span className="badge">/</span>
+          <span className="badge">.</span>
         </div>
         <p className="motivation-message">
           Don't give up! Practice makes perfect!
@@ -102,13 +102,13 @@ const Results = () => {
 
       {/* Action Buttons */}
       <div className="results-action-buttons">
-        <Link to={`/quiz/${subjectId}`}>
-          <button className="results-button primary-button">Retake Quiz</button>
+        <Link to={"/subjects"}>
+          <button className="results-button primary-button">Try Another Subject</button>
         </Link>
 
-        <Link to="/subjects">
+        {/* <Link to="/subjects">
           <button className="results-button outline-button">Try Another Subject</button>
-        </Link>
+        </Link> */}
 
         <Link to="/">
           <button className="results-button secondary-button">Back to Home</button>

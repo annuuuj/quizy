@@ -1,0 +1,14 @@
+[
+  {
+    "subjectId": "anatomy",
+    "question": "how is your body reflect?",
+    "options": [
+      "nerves",
+      "brain",
+      "other ",
+      "spine"
+    ],
+    "correctAnswer": 0,
+    "explanation": "bcoz it has exception"
+  }
+]
